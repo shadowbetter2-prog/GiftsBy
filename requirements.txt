@@ -1,20 +1,7 @@
-from aiogram import Router, types
-from aiogram.filters import Command
-
-from app.infrastructure.db.repositories import UserRepository
-from app.infrastructure.db.session import get_db
-from app.interfaces.telegram.keyboards.default import main_menu_keyboard
-from app.interfaces.telegram.messages import MESSAGES
-
-router = Router()
-
-
-@router.message(Command(commands=["help"]))
-async def help_command(message: types.Message):
-    async with get_db() as session:
-        repo = UserRepository(session)
-        user = await repo.get_user_by_telegram_id(message.from_user.id)
-        lang = user.language if user else "ru"
-        await message.reply(
-            text=MESSAGES[lang]["help"], reply_markup=main_menu_keyboard()
-        )
+aiogram>=3.0.0
+pydantic>=2.0.0
+pydantic-settings>=2.0.0
+sqlalchemy>=2.0.0
+asyncpg>=0.28.0
+apscheduler>=3.10.0
+pytz>=2023.3
