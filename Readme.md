@@ -1,0 +1,9 @@
+.venv/
+venv/
+.pytest_cache/
+logs/
+user_data.db
+.cursorignore
+**/__pycache__/
+.idea/
+.env
